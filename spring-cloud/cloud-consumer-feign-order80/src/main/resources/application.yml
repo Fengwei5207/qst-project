@@ -1,0 +1,43 @@
+server:
+  port: 80
+
+# ==========applicationName===================
+spring:
+  application:
+    name: cloud-consumer-openfeign-order
+  ####Spring Cloud Consul for Service Discovery
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true #优先使用服务ip进行注册
+        service-name: ${spring.application.name}
+    openfeign:
+      client:
+        config:
+          default:
+            #连接超时时间
+            connectTimeout: 3000
+            #读取超时时间
+            readTimeout: 3000
+#     修改默认客户端为apache hc5
+      httpclient:
+        hc5:
+          enabled: true
+#     开启请求的压缩
+      compression:
+        request:
+          enabled: true
+          min-request-size: 2048 #最小触发压缩的大小
+          mime-types: text/xml,application/xml,application/json #触发压缩数据类型
+        response:
+          enabled: true
+# 开启Feign日志
+logging:
+  level:
+    com:
+      edu:
+        qst:
+          apis:
+            PayFeignApi: debug

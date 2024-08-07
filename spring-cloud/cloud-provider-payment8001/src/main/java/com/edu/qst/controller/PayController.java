@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @Slf4j
@@ -52,6 +53,11 @@ public class PayController {
     public ResultData<Pay> getById(@PathVariable("id") Integer id)
     {
         Pay pay = payService.getById(id);
+        try{
+            TimeUnit.SECONDS.sleep(62);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return ResultData.success(pay);
     }
     @GetMapping("/pay/getAll")

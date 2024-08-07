@@ -21,7 +21,7 @@ public class OrderController {
     }
 
     @GetMapping("/consumer/pay/get/{id}")
-    public ResultData getAllOrder(@PathVariable("id") Integer id) {
+    public ResultData getOrderById(@PathVariable("id") Integer id) {
         return restTemplate.getForObject(PaymentSrv_URL + "/pay/get/" + id, ResultData.class);
     }
     @GetMapping(value = "/consumer/pay/get/info")
