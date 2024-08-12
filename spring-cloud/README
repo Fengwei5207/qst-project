@@ -1,2 +1,9 @@
 consul启动命令
 consul agent -dev
+
+
+brew install zipkin
+# to run in foreground
+zipkin
+# to run in background
+brew services start zipkin

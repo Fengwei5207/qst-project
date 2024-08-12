@@ -8,11 +8,16 @@
         <option value="$PROJECT_DIR$/class-code-01/pom.xml" />
         <option value="$PROJECT_DIR$/leetcode-test/pom.xml" />
         <option value="$PROJECT_DIR$/spring-cloud/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringSecurity/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-security/pom.xml" />
+        <option value="$PROJECT_DIR$/class-mysql-boot-02/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/SpringSecurity/pom.xml" />
         <option value="$PROJECT_DIR$/class-01/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-security/demo-8080/pom.xml" />
       </set>
     </option>
   </component>
