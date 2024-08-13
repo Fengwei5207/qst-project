@@ -1,7 +1,9 @@
 package com.edu.qst;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.edu.qst.bean.Score;
 import com.edu.qst.bean.Student;
+import com.edu.qst.bean.StudentAndScoreVO;
 import com.edu.qst.mapper.ScoreMapper;
 import com.edu.qst.mapper.StudentMapper;
 import jakarta.annotation.Resource;
@@ -110,7 +112,38 @@ class ClassMysqlBoot02ApplicationTests {
         List<Map<String, Object>> students = studentMapper.selectMaps(qw);
         printList(students);
     }
-//    12. 查询李四的考试科目和考试成绩 13. 用连接的方式查询所有学生的信息和考试信息 14. 计算每个学生的总成绩 15. 计算每个考试科目的平均成绩 16. 查询计算机成绩低于95的学生信息 17. 查询同事参加计算机和英语考试的学生信息 18. 将计算机考试成绩按从高到低进行排序 19. 查询姓张的同学的姓名院系和考试科目及成绩 20. 查询湖南的学生的姓名，年龄，院系和考试科目及成绩
+//    12. 查询李四的考试科目和考试成绩
+    @Test
+    void getLisi(){
+        List<Map<String, Object>> lisi = studentMapper.getScoreAndGradeByName("李四");
+        printList(lisi);
+//        getScoreAndGradeByName("李四");
+    }
+    void getScoreAndGradeByName(String name){
+        QueryWrapper<Student> qws = new QueryWrapper<>();
+        qws.eq("name",name).select("stu_id");
+        Student student = studentMapper.selectOne(qws);
+        QueryWrapper<Score> qwc = new QueryWrapper<>();
+        qwc.eq("stu_id", student.getStuId()).select("c_name","grade");
+
+        List<Map<String, Object>> maps = scoreMapper.selectMaps(qwc);
+        printList(maps);
+
+    }
+//    13. 用连接的方式查询所有学生的信息和考试信息
+    @Test
+    void getAllStuInfoAndScoreInfo(){
+        List<Map<String, Object>> allStuInfoAndScoreInfo = studentMapper.getAllStuInfoAndScoreInfo();
+        printList(allStuInfoAndScoreInfo);
+    }
+//    14. 计算每个学生的总成绩
+    @Test
+    void getAllStuScore(){
+        List<Map<String, Object>> allStuScore = studentMapper.getAllStuScore();
+        printList(allStuScore);
+    }
+
+//    15. 计算每个考试科目的平均成绩 16. 查询计算机成绩低于95的学生信息 17. 查询同事参加计算机和英语考试的学生信息 18. 将计算机考试成绩按从高到低进行排序 19. 查询姓张的同学的姓名院系和考试科目及成绩 20. 查询湖南的学生的姓名，年龄，院系和考试科目及成绩
 
 
 

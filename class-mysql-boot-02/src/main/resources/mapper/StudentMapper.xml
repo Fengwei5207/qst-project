@@ -4,4 +4,21 @@
     <select id="getStu234" resultType="com.edu.qst.bean.Student">
         select * from student order by birth ASC limit 1,3
     </select>
+    <select id="getScoreAndGradeByName" resultType="java.util.Map">
+        select c_name, grade
+        from score
+        join student on score.stu_id = student.stu_id
+        where student.name = #{name}
+    </select>
+    <select id="getAllStuInfoAndScoreInfo" resultType="java.util.Map">
+        SELECT st.*, sc.c_name, sc.grade
+        FROM student st
+                LEFT JOIN score sc ON st.stu_id = sc.stu_id;
+    </select>
+    <select id="getAllStuScore" resultType="java.util.Map">
+        select st.name, SUM(grade)
+        from student st
+                 join score sc on st.stu_id = sc.stu_id
+        group by st.name
+    </select>
 </mapper>
